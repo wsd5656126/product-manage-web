@@ -1,7 +1,8 @@
 # product-manage-web
 
 ## 开发相关
-配置vue路由,便于开发
+1. 关闭eslint webpack.base.conf.js
+2. 配置vue路由,便于开发
 
 ## 需求划分
 
