@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>404 Not Found</h1>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ErrorPage'
+  name: 'Product'
 }
 </script>
 
