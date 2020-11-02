@@ -1,7 +1,6 @@
 <template>
   <div>
-    <el-menu
-      :collapse="isMenuCollapse"
+    <el-menu :collapse="isMenuCollapse"
       v-bind:default-openeds="['0', '1']"
       :default-active="activeIndex"
       class="el-menu-vertical-demo"
@@ -91,7 +90,7 @@ export default {
   },
   watch: {
     // 为了设置element的菜单默认激活属性,需要获取路由状态
-    $route (to) {
+    '$route' (to) {
       let activeIndex
       this.menus.forEach(x => {
         if (x.routerName === to.name) {
@@ -103,13 +102,17 @@ export default {
           }
         }
       })
-      if (activeIndex) {
-        this.activeIndex = activeIndex
-      }
+      // if (activeIndex) {
+      //   this.activeIndex = activeIndex
+      // }
     }
   }
 }
 </script>
 
-<style scoped>
+<style>
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 300px;
+  min-height: 400px;
+}
 </style>

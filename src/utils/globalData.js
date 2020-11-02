@@ -13,10 +13,10 @@ export function setGlobalData (key, value) {
 }
 
 export function clearGlobalData (key) {
-  if (key == undefined) {
+  if (key === undefined) {
     globalData = {};
   } else {
-    delete globalData[key];
+    delete globalData[key]
   }
   return globalData
 }

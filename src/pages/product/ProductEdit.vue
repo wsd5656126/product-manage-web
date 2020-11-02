@@ -5,19 +5,23 @@
         <span>{{form.id ? '编辑' : '新建'}}</span>
       </div>
 
-      <el-form ref="form" :model="form" v-bind:label-width="formLabelWidth">
+      <el-form ref="form" :model="form" :rules="formRules" v-bind:label-width="formLabelWidth">
         <el-form-item label="日期">
           <el-col :span="11">
-            <el-date-picker type="date" placeholder="选择日期" v-model="form.date" style="width: 100%;"></el-date-picker>
+            <el-date-picker type="date"
+                            placeholder="选择日期"
+                            v-model="form.date"
+                            value-format="yyyy-MM-dd"
+                            style="width: 100%;"></el-date-picker>
           </el-col>
         </el-form-item>
-        <el-form-item label="姓名">
+        <el-form-item label="姓名" prop="name">
           <el-input v-model="form.name"></el-input>
         </el-form-item>
-        <el-form-item label="电话">
+        <el-form-item label="电话" prop="phone">
           <el-input v-model="form.phone"></el-input>
         </el-form-item>
-        <el-form-item label="地址">
+        <el-form-item label="地址" prop="address">
           <el-input v-model="form.address"></el-input>
         </el-form-item>
         <el-form-item>
@@ -32,6 +36,7 @@
 
 <script>
 import {checkPhoneValidator} from '../../utils/validator'
+import tableData from './data'
 
 export default {
   name: 'ProductEdit',
@@ -55,7 +60,7 @@ export default {
   },
   watch: {
     '$route' () {
-      this.updateTableItem()
+      this.updateFormItem()
     }
   },
   created: function () {

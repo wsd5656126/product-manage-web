@@ -36,42 +36,45 @@
         </template>
       </el-table-column>
       <el-table-column
-        prop="date"
-        label="日期"
-        width="200">
+          prop="date"
+          label="日期"
+          width="200">
       </el-table-column>
       <el-table-column
-        prop="name"
-        label="姓名"
-        width="200">
+          prop="name"
+          label="姓名"
+          width="200">
       </el-table-column>
       <el-table-column
-        prop="phone"
-        label="电话"
-        width="200">
+          prop="phone"
+          label="电话"
+          width="200">
       </el-table-column>
       <el-table-column
-        prop="address"
-        label="地址">
+          prop="address"
+          label="地址">
       </el-table-column>
       <el-table-column fixed="right" label="操作" width="300">
         <template slot-scope="scope">
-          <el-button
-            @click="deleteTableItem(scope.row.id)"
-            size="small"
-            type="danger"
+          <el-button @click="updateTableItem(scope.row.id)"
+                     size="small"
+                     type="danger"
+          >
+            编辑
+          </el-button>
+          <el-button @click="deleteTableItem(scope.row.id)"
+                     size="small"
+                     type="danger"
           >
             删除
           </el-button>
-          <el-button
-            @click="moveTableItem(scope.row.id, 'up')"
-            size="small"
+          <el-button @click="moveTableItem(scope.row.id, 'up')"
+                     size="small"
           >
             上移
           </el-button>
-          <el-button
-            @click="moveTableItem(scope.row.id, 'down')"
-            size="small"
+          <el-button @click="moveTableItem(scope.row.id, 'down')"
+                     size="small"
           >
             下移
           </el-button>
@@ -82,25 +85,16 @@
 </template>
 
 <script>
-const tableItem = {
-  date: '2020-10-22',
-  name: '吴盛东',
-  phone: '18617081555',
-  address: '浙江省杭州市西湖区'
-}
-const tableData = Array(20)
-  .fill(tableItem)
-  .map((x, i) => {
-    return {id: i + 1, ...x}
-  })
+import tableData from './data'
+
 export default {
-  name: 'ProductList',
+  name: "ProductList",
   data () {
     return {
       tableData: tableData,
       dialogFormVisible: false,
       form: {},
-      formLabelWidth: '120px',
+      formLabelWidth: "120px",
       chosenItem: [],
       showDeleteCheckbox: false
     }
@@ -119,13 +113,13 @@ export default {
       const dataLength = this.tableData.length
       const index = this.tableData.findIndex(x => x.id === id)
       switch (direction) {
-        case 'up':
+        case "up":
           if (index > 0) {//第一个不上移
             const item = this.tableData.splice(index, 1)[0]
             this.tableData.splice(index - 1, 0, item)
           }
           break
-        case 'down':
+        case "down":
           if (index < dataLength - 1) {//最后一个不下移动
             const item = this.tableData.splice(index, 1)[0]
             this.tableData.splice(index + 1, 0, item)
@@ -143,9 +137,9 @@ export default {
     },
     updateTableItem (id = 0) {
       if (id !== 0) {
-        this.$router.push({name: 'ProductList', params: {id}})
+        this.$router.push({name: "ProductEdit", params: {id}})
       } else {
-        this.$router.push({name: 'ProductAdd'})
+        this.$router.push({name: "ProductAdd"})
       }
     }
   }
